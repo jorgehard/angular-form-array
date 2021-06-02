@@ -1,0 +1,22 @@
+<section>
+  <h1>Viagem de escola</h1>
+  <form [formGroup]="formGroup">
+    <div *ngFor="let response of schoolTripMock; let x = index">
+      <h5>Pergunta {{ x + 1 }}: {{ response.title }}</h5>
+      <div
+        [formArrayName]="'formControl_' + x + '_Array'"
+        *ngFor="let item of response.items; let y = index"
+      >
+        <input
+          type="checkbox"
+          [id]="y"
+          [name]="'formControl_' + x + '_' + y"
+          [formControlName]="y"
+        />
+
+        <label [for]="y">{{ item.name }}</label>
+      </div>
+    </div>
+    <button type="submit" (click)="onSubmit()">Enviar</button>
+  </form>
+</section>
